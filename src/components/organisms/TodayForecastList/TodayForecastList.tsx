@@ -13,14 +13,14 @@ interface TodayForecastListProps {
 }
 
 const TodayForecastList: FC<TodayForecastListProps> = ({ data }) => (
-  <div className="h-60 rounded-3xl bg-light-card p-6">
-    <h2 className="text-sm font-bold uppercase text-light-label">
+  <div className="h-60 rounded-3xl bg-dark-card p-6">
+    <h2 className="text-sm font-bold uppercase text-dark-label">
       pronóstico de hoy
     </h2>
     <div className="mt-8 flex space-x-10 px-2">
       {data?.map((f) => (
         <div className="flex flex-col items-center" key={f.dt}>
-          <p className="text-base font-bold text-light-label">
+          <p className="text-base font-bold text-dark-label">
             {dayjs.unix(f.dt).format("h:mm A")}
           </p>
           <div className="relative my-2 flex h-16 w-16">
@@ -33,7 +33,7 @@ const TodayForecastList: FC<TodayForecastListProps> = ({ data }) => (
             />
           </div>
 
-          <span className="text-2xl font-bold text-light-text">
+          <span className="text-2xl font-bold text-dark-text">
             {Math.trunc(Number(f.main.temp))}°
           </span>
         </div>

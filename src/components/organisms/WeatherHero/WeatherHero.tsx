@@ -15,14 +15,14 @@ const WeatherHero: FC<WeatherHeroProps> = ({ data }) => (
   <div className="flex flex-1 flex-row items-center justify-between px-10">
     <div className="flex flex-col justify-between">
       <div className="flex flex-col space-y-2">
-        <h1 className="text-5xl font-bold text-light-text">
+        <h1 className="text-5xl font-bold text-dark-text">
           {data?.name}, <span>{data?.sys.country}</span>
         </h1>
-        <p className="text-base text-light-label">
+        <p className="text-base text-dark-label">
           {data?.weather.description}
         </p>
       </div>
-      <span className="mt-10 text-6xl font-bold text-light-text">
+      <span className="mt-10 text-6xl font-bold text-dark-text">
         {data?.main.temp && `${Math.trunc(Number(data?.main.temp))}°`}
       </span>
     </div>
