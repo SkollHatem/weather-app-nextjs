@@ -1,45 +1,17 @@
-FROM node:18-alpine AS deps
-RUN apk add --no-cache libc6-compat
+FROM node:18-alpine
+
+RUN mkdir -p /app
+
 WORKDIR /app
 
-COPY package.json package-lock.json ./
-RUN  npm install --production
+COPY package.json /app
 
-FROM node:18-alpine AS builder
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
+RUN npm install
 
-ENV NEXT_TELEMETRY_DISABLED 1
+COPY . /app
 
 RUN npm run build
 
-FROM node:18-alpine AS runner
-WORKDIR /app
-
-ENV NODE_ENV production
-ENV NEXT_TELEMETRY_DISABLED 1
-
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-
-COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
-
-USER nextjs
-
 EXPOSE 3000
 
-ARG apiKey
-ENV NEXT_PUBLIC_OPENWEATHERMAP_API_KEY $apiKey
-
-ARG storeKey
-ENV NEXT_PUBLIC_STORAGE_KEY $storeKey
-
-ARG defaultSearch
-ENV NEXT_PUBLIC_INITIAL_SEARCH $defaultSearch
-
-ENV PORT 3000
-
-CMD ["npm", "start"]
+CMD [ "npm", "start" ]
