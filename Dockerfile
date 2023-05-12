@@ -31,6 +31,15 @@ USER nextjs
 
 EXPOSE 3000
 
+ARG apiKey
+ENV NEXT_PUBLIC_OPENWEATHERMAP_API_KEY $apiKey
+
+ARG storeKey
+ENV NEXT_PUBLIC_STORAGE_KEY $storeKey
+
+ARG defaultSearch
+ENV NEXT_PUBLIC_INITIAL_SEARCH $defaultSearch
+
 ENV PORT 3000
 
 CMD ["npm", "start"]
