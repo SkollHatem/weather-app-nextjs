@@ -23,16 +23,16 @@ const VisitedList: FC<VisitedListProps> = ({ loading, onClick }) => {
   }, [loading]);
 
   return (
-    <div className="w-96 bg-light-card rounded-3xl p-6 h-max max-h-full">
-      <h2 className="text-sm text-light-label font-bold uppercase">
+    <div className="h-max max-h-full w-96 rounded-3xl bg-light-card p-6">
+      <h2 className="text-sm font-bold uppercase text-light-label">
         Busquedas recientes
       </h2>
-      <div className="flex flex-col justify-between space-y-2 mt-2">
+      <div className="mt-2 flex flex-col justify-between space-y-2">
         {items.map((item, i) => (
           <button
             key={i}
             onClick={() => onClick(item)}
-            className="p-2 text-left rounded-xl hover:bg-light-bg"
+            className="rounded-xl p-2 text-left hover:bg-light-bg"
           >
             <span className="text-base text-light-label">{item}</span>
           </button>

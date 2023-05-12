@@ -15,8 +15,8 @@ const ForecastList: FC<ForecastListProps> = ({ data }) => {
   const dataKeys = data ? Object.keys(data) : [];
 
   return (
-    <div className="w-96 bg-light-card rounded-3xl p-6 h-max max-h-full">
-      <h2 className="text-sm text-light-label font-bold uppercase">
+    <div className="h-max max-h-full w-96 rounded-3xl bg-light-card p-6">
+      <h2 className="text-sm font-bold uppercase text-light-label">
         pronóstico de 5 días
       </h2>
       <div className="flex flex-col justify-between">
@@ -26,7 +26,7 @@ const ForecastList: FC<ForecastListProps> = ({ data }) => {
             return (
               <div className="flex items-center justify-between" key={i}>
                 <p className="text-base text-light-label">{fData.dayName}</p>
-                <div className="flex my-2 w-20 h-20 relative">
+                <div className="relative my-2 flex h-20 w-20">
                   <Image
                     src={`/images/animated/${getIcon(
                       fData.highest.weather.icon
@@ -38,7 +38,7 @@ const ForecastList: FC<ForecastListProps> = ({ data }) => {
                   />
                 </div>
                 <span className="text-base text-light-label">
-                  <span className="font-bold text-light-text mr-1">
+                  <span className="mr-1 font-bold text-light-text">
                     {Math.trunc(Number(fData.highest.main.temp))}
                   </span>
                   /{Math.trunc(Number(fData.lowest.main.temp))}°

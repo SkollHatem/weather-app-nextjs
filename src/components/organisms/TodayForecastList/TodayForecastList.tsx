@@ -13,17 +13,17 @@ interface TodayForecastListProps {
 }
 
 const TodayForecastList: FC<TodayForecastListProps> = ({ data }) => (
-  <div className="h-60 bg-light-card rounded-3xl p-6">
-    <h2 className="text-sm text-light-label font-bold uppercase">
+  <div className="h-60 rounded-3xl bg-light-card p-6">
+    <h2 className="text-sm font-bold uppercase text-light-label">
       pronóstico de hoy
     </h2>
-    <div className="flex mt-8 px-2 space-x-10">
+    <div className="mt-8 flex space-x-10 px-2">
       {data?.map((f) => (
-        <div className="flex items-center flex-col" key={f.dt}>
+        <div className="flex flex-col items-center" key={f.dt}>
           <p className="text-base font-bold text-light-label">
             {dayjs.unix(f.dt).format("h:mm A")}
           </p>
-          <div className="flex my-2 w-16 h-16 relative">
+          <div className="relative my-2 flex h-16 w-16">
             <Image
               src={`/images/animated/${getIcon(f.weather.icon)}`}
               alt="exam"
