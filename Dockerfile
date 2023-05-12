@@ -8,9 +8,18 @@ RUN  npm install
 FROM node:18-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
+
 COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED 1
+ARG apiKey
+ENV NEXT_PUBLIC_OPENWEATHERMAP_API_KEY $apiKey
+
+ARG storeKey
+ENV NEXT_PUBLIC_STORAGE_KEY $storeKey
+
+ARG defaultSearch
+ENV NEXT_PUBLIC_INITIAL_SEARCH $defaultSearch
 
 RUN npm run build
 
@@ -26,19 +35,11 @@ RUN adduser --system --uid 1001 nextjs
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
+COPY ./public ./public
 
 USER nextjs
 
 EXPOSE 3000
-
-ARG apiKey
-ENV NEXT_PUBLIC_OPENWEATHERMAP_API_KEY $apiKey
-
-ARG storeKey
-ENV NEXT_PUBLIC_STORAGE_KEY $storeKey
-
-ARG defaultSearch
-ENV NEXT_PUBLIC_INITIAL_SEARCH $defaultSearch
 
 ENV PORT 3000
 

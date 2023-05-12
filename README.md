@@ -1,6 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Docker
 
-## Getting Started
+### Docker Hub
+https://hub.docker.com/r/emmanuelvillegas/weather-app-nextjs
+
+> For local enviroment
+
+First, build docker image:
+
+```bash
+docker build --build-arg apiKey="YOUR_API_KEY" --build-arg storeKey="@WeatherAppStore" --build-arg defaultSearch="London" -t weather-app-nextjs .
+```
+
+Second, run docker image:
+
+```bash
+docker run -p3000:3000 weather-app-nextjs
+```
+
+## NextJs
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 First, run the development server:
 
@@ -11,6 +29,8 @@ yarn dev
 # or
 pnpm dev
 ```
+
+
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
