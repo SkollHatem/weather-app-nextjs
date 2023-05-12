@@ -13,6 +13,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Make Env File
+        uses: DeveloperRic/action-create-env@v1.0.2 # set this to the version of your choice
+        with:
+          include_env_vars: true
+          full_text: |
+            NEXT_PUBLIC_INITIAL_SEARCH=${{ secrets.NEXT_PUBLIC_INITIAL_SEARCH }}
+            NEXT_PUBLIC_OPENWEATHERMAP_API_KEY=${{ secrets.NEXT_PUBLIC_OPENWEATHERMAP_API_KEY }}
+            NEXT_PUBLIC_STORAGE_KEY=${{ secrets.NEXT_PUBLIC_STORAGE_KEY }}
+
       - name: Cypress run
         uses: cypress-io/github-action@v3
         with:
